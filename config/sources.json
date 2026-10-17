@@ -1,0 +1,38 @@
+{
+  "sources": [
+    {
+      "id": "bam_monetary_2024_09",
+      "title": "Bank Al-Maghrib — Statistiques monétaires, septembre 2024",
+      "publisher": "Bank Al-Maghrib",
+      "url": "https://www.bkam.ma/fr/content/download/814383/8935495/DSGD%20SM%20septembre%202024.pdf",
+      "format": "pdf",
+      "status": "downloaded_extraction_requires_page_review",
+      "reuse_terms_verified": false
+    },
+    {
+      "id": "bam_annual_2024",
+      "title": "Bank Al-Maghrib — Rapport annuel 2024",
+      "publisher": "Bank Al-Maghrib",
+      "url": "https://www.bkam.ma/content/download/829011/9037410/Rapport%2024%20FR.pdf",
+      "format": "pdf",
+      "status": "downloaded_and_indexed_locally",
+      "reuse_terms_verified": false
+    },
+    {
+      "id": "hcp_series",
+      "publisher": "HCP",
+      "url": "https://data.gov.ma/data/dataset/data_i3981",
+      "status": "downloaded_and_parsed_see_ingestion_config",
+      "license": "odc-odbl",
+      "reuse_terms_verified": false,
+      "note": "Licence declaree par le catalogue ; obligations de redistribution a respecter."
+    },
+    {
+      "id": "cnss_sectoral",
+      "publisher": "CNSS",
+      "url": null,
+      "status": "availability_and_granularity_unconfirmed",
+      "reuse_terms_verified": false
+    }
+  ]
+}

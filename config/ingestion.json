@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "id": "hcp_ipc",
+      "parser": "hcp_ipc",
+      "catalog_api": "https://data.gov.ma/data/api/3/action/package_show?id=data_i3981",
+      "dataset_url": "https://data.gov.ma/data/dataset/data_i3981",
+      "resource_id": "9bb854cc-f2c2-4839-8738-63eda65f08f0"
+    },
+    {
+      "id": "bam_credit",
+      "parser": "bam_credit",
+      "catalog_api": "https://data.gov.ma/data/api/3/action/package_show?id=ventilation-du-credit-bancaire-par-secteur-institutionnel-dec-2001-a-sept-2023",
+      "dataset_url": "https://data.gov.ma/data/dataset/ventilation-du-credit-bancaire-par-secteur-institutionnel-dec-2001-a-sept-2023",
+      "resource_id": "a9c89d6c-5e66-4afd-b458-64f274a3ea89"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {"type": "string", "defaultValue": "francecentral"},
+    "storageName": {"type": "string", "defaultValue": "[concat('stradar', uniqueString(resourceGroup().id))]"},
+    "connectorName": {"type": "string", "defaultValue": "ac-radar-macro-dev"},
+    "containerNames": {"type": "array", "defaultValue": ["raw", "lakehouse"], "minLength": 2, "maxLength": 2}
+  },
+  "variables": {
+    "storageId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]",
+    "connectorId": "[resourceId('Microsoft.Databricks/accessConnectors', parameters('connectorName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('storageName')]",
+      "location": "[parameters('location')]",
+      "kind": "StorageV2",
+      "sku": {"name": "Standard_LRS"},
+      "tags": {"project": "radar-macro", "environment": "portfolio"},
+      "properties": {
+        "isHnsEnabled": true,
+        "accessTier": "Hot",
+        "minimumTlsVersion": "TLS1_2",
+        "supportsHttpsTrafficOnly": true,
+        "allowBlobPublicAccess": false,
+        "allowSharedKeyAccess": false,
+        "publicNetworkAccess": "Enabled",
+        "networkAcls": {"bypass": "None", "defaultAction": "Allow"}
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2023-05-01",
+      "name": "[concat(parameters('storageName'), '/default')]",
+      "dependsOn": ["[variables('storageId')]"],
+      "properties": {"deleteRetentionPolicy": {"enabled": true, "days": 7}, "containerDeleteRetentionPolicy": {"enabled": true, "days": 7}}
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2023-05-01",
+      "name": "[concat(parameters('storageName'), '/default/', parameters('containerNames')[copyIndex()])]",
+      "copy": {"name": "containers", "count": 2},
+      "dependsOn": ["[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageName'), 'default')]"],
+      "properties": {"publicAccess": "None"}
+    },
+    {
+      "type": "Microsoft.Databricks/accessConnectors",
+      "apiVersion": "2023-05-01",
+      "name": "[parameters('connectorName')]",
+      "location": "[parameters('location')]",
+      "identity": {"type": "SystemAssigned"},
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('storageId'), variables('connectorId'), 'delegator')]",
+      "scope": "[variables('storageId')]",
+      "dependsOn": ["[variables('storageId')]", "[variables('connectorId')]"],
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')]",
+        "principalId": "[reference(variables('connectorId'), '2023-05-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('storageId'), variables('connectorId'), parameters('containerNames')[copyIndex()], 'blob-contributor')]",
+      "copy": {"name": "containerRoles", "count": 2},
+      "scope": "[resourceId('Microsoft.Storage/storageAccounts/blobServices/containers', parameters('storageName'), 'default', parameters('containerNames')[copyIndex()])]",
+      "dependsOn": ["containers", "[variables('connectorId')]"],
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
+        "principalId": "[reference(variables('connectorId'), '2023-05-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    }
+  ],
+  "outputs": {
+    "storageName": {"type": "string", "value": "[parameters('storageName')]"},
+    "connectorId": {"type": "string", "value": "[variables('connectorId')]"},
+    "rawUrl": {"type": "string", "value": "[concat('abfss://raw@', parameters('storageName'), '.dfs.core.windows.net/')]"},
+    "lakehouseUrl": {"type": "string", "value": "[concat('abfss://lakehouse@', parameters('storageName'), '.dfs.core.windows.net/')]"}
+  }
+}

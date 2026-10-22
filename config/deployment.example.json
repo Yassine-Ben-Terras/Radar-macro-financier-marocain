@@ -1,0 +1,8 @@
+{
+  "subscription_id": "YOUR_SUBSCRIPTION_ID",
+  "resource_group": "rg-radar-macro-dev",
+  "workspace_name": "dbw-radar-macro-dev",
+  "workspace_host": "https://adb-YOUR_WORKSPACE_ID.azuredatabricks.net",
+  "storage_account": "YOUR_STORAGE_ACCOUNT",
+  "access_connector": "ac-radar-macro-dev"
+}

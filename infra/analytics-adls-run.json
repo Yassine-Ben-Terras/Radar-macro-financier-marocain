@@ -1,0 +1,23 @@
+{
+  "run_name": "radar-adls-analytics",
+  "timeout_seconds": 600,
+  "performance_target": "STANDARD",
+  "environments": [{
+    "environment_key": "radar-analytics",
+    "spec": {"environment_version": "4", "dependencies": ["plotly==6.3.0"]}
+  }],
+  "tasks": [{
+    "task_key": "analytics",
+    "timeout_seconds": 600,
+    "environment_key": "radar-analytics",
+    "notebook_task": {
+      "notebook_path": "/Shared/radar-macro/notebooks/03_analytics",
+      "source": "WORKSPACE",
+      "base_parameters": {
+        "catalog": "radar_adls",
+        "repo_root": "/Workspace/Shared/radar-macro",
+        "experiment_path": "/Shared/radar-macro/experiments/baselines-adls"
+      }
+    }
+  }]
+}

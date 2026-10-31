@@ -1,0 +1,23 @@
+{
+  "run_name": "radar-adls-assistant",
+  "timeout_seconds": 600,
+  "performance_target": "STANDARD",
+  "environments": [{
+    "environment_key": "radar-assistant",
+    "spec": {"environment_version": "4", "dependencies": ["pypdf==6.10.0"]}
+  }],
+  "tasks": [{
+    "task_key": "assistant",
+    "timeout_seconds": 600,
+    "environment_key": "radar-assistant",
+    "notebook_task": {
+      "notebook_path": "/Shared/radar-macro/notebooks/04_assistant",
+      "source": "WORKSPACE",
+      "base_parameters": {
+        "catalog": "radar_adls",
+        "repo_root": "/Workspace/Shared/radar-macro",
+        "question": "Recherche documentaire : politique monétaire"
+      }
+    }
+  }]
+}

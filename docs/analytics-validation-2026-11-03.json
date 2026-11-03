@@ -1,0 +1,37 @@
+{
+  "run_id": "<run-id>",
+  "task_run_id": "<task-run-id>",
+  "result": "SUCCESS",
+  "setup_seconds": 196,
+  "execution_seconds": 217,
+  "mlflow_run_id": "<mlflow-run-id>",
+  "experiment_id": "<experiment-id>",
+  "artifact_uri": "dbfs:/Volumes/radar_adls/radar_gold/artifacts/mlflow/<mlflow-run-id>/artifacts",
+  "national_rows": 5787,
+  "test_start": "2024-09-01",
+  "test_end": "2026-08-01",
+  "metrics": [
+    {
+      "method": "last_month",
+      "n": 24,
+      "mae_mdh": 19194.454759830103,
+      "rmse_mdh": 25275.28624020206,
+      "mase": 2.5174110581601234
+    },
+    {
+      "method": "same_month_last_year",
+      "n": 24,
+      "mae_mdh": 72890.14169021031,
+      "rmse_mdh": 78117.23840593295,
+      "mase": 9.559763536800657
+    },
+    {
+      "method": "drift_12m",
+      "n": 24,
+      "mae_mdh": 19803.455219761847,
+      "rmse_mdh": 24375.52286048064,
+      "mase": 2.5972833187395294
+    }
+  ],
+  "cost_verified": false
+}

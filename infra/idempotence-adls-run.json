@@ -1,0 +1,32 @@
+{
+  "run_name": "radar-adls-idempotence",
+  "timeout_seconds": 900,
+  "performance_target": "STANDARD",
+  "environments": [
+    {
+      "environment_key": "radar-ingestion",
+      "spec": {
+        "environment_version": "4",
+        "dependencies": [
+          "openpyxl==3.1.5"
+        ]
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_key": "ingestion",
+      "timeout_seconds": 900,
+      "environment_key": "radar-ingestion",
+      "notebook_task": {
+        "notebook_path": "/Shared/radar-macro/notebooks/02_lakehouse",
+        "source": "WORKSPACE",
+        "base_parameters": {
+          "catalog": "radar_adls",
+          "repo_root": "/Workspace/Shared/radar-macro",
+          "verify_idempotence": "true"
+        }
+      }
+    }
+  ]
+}

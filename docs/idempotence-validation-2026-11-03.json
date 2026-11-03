@@ -1,0 +1,107 @@
+{
+  "run_id": "<run-id>",
+  "task_run_id": "<task-run-id>",
+  "result": "SUCCESS",
+  "run_url": "https://<workspace-host>/?o=<workspace-id>#job/902697693026926/run/<task-run-id>",
+  "setup_duration_ms": 246000,
+  "execution_duration_ms": 311000,
+  "sources": [
+    {
+      "source_id": "bam_credit",
+      "observations": 4455,
+      "first_period": "2001-12-01",
+      "last_period": "2026-08-01"
+    },
+    {
+      "source_id": "hcp_ipc",
+      "observations": 24696,
+      "first_period": "2017-01-01",
+      "last_period": "2025-01-01"
+    }
+  ],
+  "table_locations": {
+    "radar_bronze.manifests": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/__unitystorage/catalogs/<catalog-id>/tables/<table-id>",
+    "radar_bronze.raw_cells": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/__unitystorage/catalogs/<catalog-id>/tables/<table-id>",
+    "radar_silver.observations_v2": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/__unitystorage/catalogs/<catalog-id>/tables/<table-id>",
+    "radar_silver.rejects": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/__unitystorage/catalogs/<catalog-id>/tables/<table-id>"
+  },
+  "rejected": 0,
+  "idempotence": {
+    "checked_at": "2026-11-03T21:26:59.628390+00:00",
+    "before": {
+      "radar_bronze.manifests": {
+        "rows": 2,
+        "distinct_keys": 2,
+        "null_keys": 0,
+        "sha256": "9d00104b800a7a299d473f9d829d6e0c03a045b4b6e5cb7fc8bd0723381ca659"
+      },
+      "radar_bronze.raw_cells": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "ea6f9d4b24862a0572aeb0d5749308a95b24436431781b7fb906b7a81dea70a4"
+      },
+      "radar_silver.observations_v2": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "68108b0e9b6ea211d81f075fa1948d9ebbef9e04ff92e42f4b5f3f6cb3125656"
+      },
+      "radar_silver.rejects": {
+        "rows": 0,
+        "distinct_keys": 0,
+        "null_keys": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "radar_gold.indicators": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "89e9b4a3f8095daeda49a2eba740845b2c7205e55be69ed91146a5d8f8217db5"
+      }
+    },
+    "after": {
+      "radar_bronze.manifests": {
+        "rows": 2,
+        "distinct_keys": 2,
+        "null_keys": 0,
+        "sha256": "9d00104b800a7a299d473f9d829d6e0c03a045b4b6e5cb7fc8bd0723381ca659"
+      },
+      "radar_bronze.raw_cells": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "ea6f9d4b24862a0572aeb0d5749308a95b24436431781b7fb906b7a81dea70a4"
+      },
+      "radar_silver.observations_v2": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "68108b0e9b6ea211d81f075fa1948d9ebbef9e04ff92e42f4b5f3f6cb3125656"
+      },
+      "radar_silver.rejects": {
+        "rows": 0,
+        "distinct_keys": 0,
+        "null_keys": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "radar_gold.indicators": {
+        "rows": 29151,
+        "distinct_keys": 29151,
+        "null_keys": 0,
+        "sha256": "89e9b4a3f8095daeda49a2eba740845b2c7205e55be69ed91146a5d8f8217db5"
+      }
+    },
+    "checks": {
+      "radar_bronze.manifests": true,
+      "radar_bronze.raw_cells": true,
+      "radar_silver.observations_v2": true,
+      "radar_silver.rejects": true,
+      "radar_gold.indicators": true,
+      "expected_sources": true
+    },
+    "passed": true,
+    "scope": "Same two source archives, one real ingestion rerun; logical content excludes Delta transaction metadata"
+  },
+  "proof_uri": "dbfs:/Volumes/radar_adls/radar_gold/artifacts/idempotence/<proof-id>.json"
+}

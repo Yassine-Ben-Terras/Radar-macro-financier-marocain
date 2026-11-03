@@ -1,0 +1,35 @@
+{
+  "run_id": "<run-id>",
+  "task_run_id": "<task-run-id>",
+  "result": "SUCCESS",
+  "catalog": "radar_adls",
+  "storage_account": "<storage-account>",
+  "setup_seconds": 186,
+  "execution_seconds": 256,
+  "sources": [
+    {
+      "source_id": "bam_credit",
+      "observations": 4455,
+      "first_period": "2001-12-01",
+      "last_period": "2026-08-01"
+    },
+    {
+      "source_id": "hcp_ipc",
+      "observations": 24696,
+      "first_period": "2017-01-01",
+      "last_period": "2025-01-01"
+    }
+  ],
+  "rejected": 0,
+  "source_files_sha256_verified": 8,
+  "table_storage_prefix_verified": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/",
+  "tables_verified": [
+    "radar_bronze.manifests",
+    "radar_bronze.raw_cells",
+    "radar_silver.observations_v2",
+    "radar_silver.rejects"
+  ],
+  "run_url": "https://<workspace-host>/?o=<workspace-id>#job/915429838327907/run/<task-run-id>",
+  "cost_verified": false,
+  "cloud_idempotence_rerun_verified": false
+}

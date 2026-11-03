@@ -1,0 +1,21 @@
+{
+  "run_id": "<run-id>",
+  "task_run_id": "<task-run-id>",
+  "result": "SUCCESS",
+  "setup_seconds": 186,
+  "execution_seconds": 230,
+  "artifact_uri": "dbfs:/Volumes/radar_adls/radar_gold/artifacts/assistant/e292fc863ae840e4afa2efbd9086a34c",
+  "quality": {
+    "documents": 2,
+    "chunks": 1008,
+    "observations": 5787,
+    "pages_indexed": 343,
+    "pages_review_required": 24,
+    "gold_sha256": "090b48a15ed98e1e5734807c77e685f3bf59b5bf3758791f7ae5b8b729dac6f0"
+  },
+  "evaluation_passed": 11,
+  "evaluation_total": 11,
+  "document_table_location": "abfss://lakehouse@<storage-account>.dfs.core.windows.net/catalogs/radar_adls/__unitystorage/catalogs/<catalog-id>/tables/<table-id>",
+  "cost_verified": false,
+  "generative_rag": false
+}

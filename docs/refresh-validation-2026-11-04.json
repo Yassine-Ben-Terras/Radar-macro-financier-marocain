@@ -1,0 +1,12 @@
+{
+  "public_source_check_at_utc": "2026-11-04T15:59:48.837262+00:00",
+  "public_source_check_result": "unchanged",
+  "source_count": 2,
+  "observations_validated_locally": 29151,
+  "unit_and_regression_tests_passed": 37,
+  "powershell_syntax_check": "passed",
+  "new_cloud_runs_submitted": 0,
+  "schedule_enabled": false,
+  "new_snapshot_end_to_end_cloud_execution_verified": false,
+  "scope": "Public configured resources downloaded and compared; local controller and failure recovery tested with a simulated Databricks client. No newly published snapshot available during verification."
+}

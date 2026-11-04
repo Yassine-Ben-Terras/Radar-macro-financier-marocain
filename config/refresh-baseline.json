@@ -1,0 +1,8 @@
+{
+  "run_id": "historical-validated-baseline",
+  "proof": "docs/idempotence-validation-2026-11-03.json",
+  "processed": {
+    "hcp_ipc": "1be4c812b3703158d07dd317f7f555884130d2c94091ade51933280ab6656e35",
+    "bam_credit": "e64ce6e32f878c7336a5ea5818e5cb99fd61e2113a2321fe582fa1930424b0cf"
+  }
+}
